@@ -21,15 +21,12 @@ function isValidURL(link) {
 }
 
 const expressLink = computed(() => {
-  const http = "https://";
-  const value = myLink.value.replace(http, "");
-  const valueArr = value.split("/");
   const parsedUrl = isValidURL(myLink.value)
     ? new URL(myLink.value)
     : undefined;
   if (parsedUrl) {
     const pathname = parsedUrl?.pathname.replace(/[0-9a-fA-F]{32}/, "default");
-    const search = parsedUrl?.search.replace("?", "%3F").replace("&", "%26");
+    const search = parsedUrl?.search.replace("?", "%3F").replace(/&/gi, "%26");
     return `${parsedUrl.origin}/registration?destination=${pathname}${search}`;
   }
   return "";
