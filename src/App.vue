@@ -35,9 +35,6 @@ const expressLink = computed(() => {
 const hasLink = computed(() => !!expressLink.value);
 
 const copiedValue = computed(() => {
-  if (!expressLink.value) {
-    return "";
-  }
   return isCopied.value ? "Copied" : "Copy";
 });
 
